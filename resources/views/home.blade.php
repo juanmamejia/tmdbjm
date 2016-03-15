@@ -15,10 +15,10 @@
 				      			<div class="row">
 				      		@endif
 					      
-						        <div class="col-md-3">
-						          <h3>{{$popularMovies[$i]['title']}}</h3>
-						          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-						          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+						        <div class="col-md-3">						          
+						          <p><a href="movie/{{$popularMovies[$i]['id']}}"><img src="https://image.tmdb.org/t/p/w250_and_h141_bestv2{{$popularMovies[$i]['poster_path']}}" alt="{{$popularMovies[$i]['title']}}"></a></p>
+						          <h4>{{$popularMovies[$i]['title']}}</h4>
+						          <p>&nbsp;</p>
 						        </div>
 						    
 						    @if ($i>0) 

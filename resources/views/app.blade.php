@@ -69,23 +69,22 @@
 		  
 		  $queryBox.autocomplete({
 		    minLength: 1,
-		    source: "getdata"
+		    source: "{{ url('/getdata') }}"
 		  });
 		  
 		  $queryBox.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
 		    
-		    var $li = $('<li style="height:70px;">'),
-		        $img = $('<img width="45" height="64" style="float:left;">');
+		    var $li = $('<li style="height:70px;">');
 
-
-		    $img.attr({
-		      src: item.icon,
-		      alt: item.label
-		    });
 
 		    $li.attr('data-value', item.label);
 		    $li.append('<a href="'+item.link+'">');
-		    $li.find('a').append($img).append('<span>&nbsp;'+item.label+'<br>&nbsp;'+item.extra+'</span>');    
+
+
+		    var $theHTML = '<div style="display:table;"><span style="vertical-align:middle;display:table-cell;"><img style="vertical-align:middle;display:table-cell;" width="45" height="64" src="'+item.icon+'" alt="'+item.label+'" /></span><span style="vertical-align:middle;display:table-cell;font-size:12px;">&nbsp;<b>'+item.label+'</b><br>&nbsp;'+item.type+'<br>&nbsp;'+item.extra+'</span></div>'; 
+		    $li.find('a').append($theHTML); 
+
+		    
 
 		    return $li.appendTo(ul);
 		  };

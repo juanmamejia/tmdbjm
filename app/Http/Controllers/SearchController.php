@@ -51,14 +51,15 @@ class SearchController extends Controller
 			{
 				if ($theResults['results'][$i]['media_type'] == 'movie')
 				{
-					$label = $theResults['results'][$i]['title'].' (Movie)';
+					$label = $theResults['results'][$i]['title'];
 					$icon = $theResults['results'][$i]['poster_path'];
 					$extra = substr($theResults['results'][$i]['release_date'], 0, 4);
 					$link = 'movie/'.$theResults['results'][$i]['id'];
+					$type = '(Movie)';
 				}
 				else if ($theResults['results'][$i]['media_type'] == 'person')
 				{
-					$label = $theResults['results'][$i]['name'].' (Person)';;
+					$label = $theResults['results'][$i]['name'];
 					$icon = $theResults['results'][$i]['profile_path'];
 
 					if (count($theResults['results'][$i]['known_for'])>0)
@@ -82,14 +83,16 @@ class SearchController extends Controller
 						$extra = '';
 					}
 
-					$link = 'person/'.$theResults['results'][$i]['id'];
+					$link = url('/person').'/'.$theResults['results'][$i]['id'];
+					$type = '(Person)';
 				}
 				else if ($theResults['results'][$i]['media_type'] == 'tv')
 				{
-					$label = $theResults['results'][$i]['name'].' (Tv)';;
+					$label = $theResults['results'][$i]['name'];
 					$icon = $theResults['results'][$i]['poster_path'];
 					$extra = substr($theResults['results'][$i]['first_air_date'], 0, 4);
 					$link = 'tv/'.$theResults['results'][$i]['id'];
+					$type = '(TV)';
 				}
 
 				if (empty($label))
@@ -110,10 +113,10 @@ class SearchController extends Controller
 				$return_array[$i]['icon'] = $icon;
 				$return_array[$i]['extra'] = $extra;
 				$return_array[$i]['link'] = $link;
+				$return_array[$i]['type'] = $type;
 			}
 
 			return Response::json($return_array);
-			//echo "<pre>"; print_r($return_array); echo "</pre>";
 		}
 
 	}
