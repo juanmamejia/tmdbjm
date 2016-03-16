@@ -37,11 +37,12 @@ class HomeController extends Controller {
 	public function index()
 	{
 		$discoverObj = new Discover();
-		$theResults = $discoverObj->getPopularMovies();
+		$popularMoviesArray = $discoverObj->getPopularMovies();
+		$popularTvShowsArray = $discoverObj->getPopularTvShows();
 
 		//echo "<pre>"; print_r($theResults); echo "</pre>";
 
-		return view('home')->with('popularMovies', $theResults['results']);
+		return view('home')->with('popularMovies', $popularMoviesArray['results'])->with('popularTvShows', $popularTvShowsArray['results']);
 	}
 
 }

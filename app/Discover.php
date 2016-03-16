@@ -21,6 +21,15 @@ class Discover extends Model {
 		return $result;
     }
 
+    public function getPopularTvShows()
+    {
+    	$urlQuery=$this->url.'tv?sort_by=popularity.desc&api_key='.$this->apiKey;
+        $string = $this->curl_get_contents($urlQuery);
+		$result = json_decode($string, true);
+
+		return $result;
+    }
+
     /**
 	 * Get TMDN JSON via curl
 	 *
