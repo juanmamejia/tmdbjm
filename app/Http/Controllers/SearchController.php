@@ -54,7 +54,7 @@ class SearchController extends Controller
 					$label = $theResults['results'][$i]['title'];
 					$icon = $theResults['results'][$i]['poster_path'];
 					$extra = substr($theResults['results'][$i]['release_date'], 0, 4);
-					$link = 'movie/'.$theResults['results'][$i]['id'];
+					$link = url('/movie').'/'.$theResults['results'][$i]['id'];
 					$type = '(Movie)';
 				}
 				else if ($theResults['results'][$i]['media_type'] == 'person')
@@ -91,7 +91,7 @@ class SearchController extends Controller
 					$label = $theResults['results'][$i]['name'];
 					$icon = $theResults['results'][$i]['poster_path'];
 					$extra = substr($theResults['results'][$i]['first_air_date'], 0, 4);
-					$link = 'tv/'.$theResults['results'][$i]['id'];
+					$link = url('/tv').'/'.$theResults['results'][$i]['id'];
 					$type = '(TV)';
 				}
 

@@ -13,6 +13,7 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('person/{id}', 'PersonController@showPerson');
+Route::get('movie/{id}', 'MovieController@showMovie');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

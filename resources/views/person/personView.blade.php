@@ -13,7 +13,7 @@
 				      	
 						<div class="row">
 				            <div class="col-md-5" style="padding-top:20px;">
-				                
+				                @if($countImages>0)
 				            		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:342px;">
 									  <!-- Indicators -->
 
@@ -45,11 +45,11 @@
 											  	@for ($i=0;$i<10;$i++)
 											  		@if ($i==0)
 													    <div class="item active">
-													      <img src="https://image.tmdb.org/t/p/w342/{{$images['profiles'][$i]['file_path']}}" alt="Chania">
+													      <img src="https://image.tmdb.org/t/p/w342/{{$images['profiles'][$i]['file_path']}}" alt="{{$info['name']}}">
 													    </div>
 													@else
 													    <div class="item">
-													      <img src="https://image.tmdb.org/t/p/w342/{{$images['profiles'][$i]['file_path']}}" alt="Chania">
+													      <img src="https://image.tmdb.org/t/p/w342/{{$images['profiles'][$i]['file_path']}}" alt="{{$info['name']}}">
 													    </div>
 													@endif
 												@endfor
@@ -57,11 +57,11 @@
 												@for ($i=0;$i<count($images['profiles']);$i++)
 											  		@if ($i==0)
 													    <div class="item active">
-													      <img src="https://image.tmdb.org/t/p/w342/{{$images['profiles'][$i]['file_path']}}" alt="Chania">
+													      <img src="https://image.tmdb.org/t/p/w342/{{$images['profiles'][$i]['file_path']}}" alt="{{$info['name']}}">
 													    </div>
 													@else
 													    <div class="item">
-													      <img src="https://image.tmdb.org/t/p/w342/{{$images['profiles'][$i]['file_path']}}" alt="Chania">
+													      <img src="https://image.tmdb.org/t/p/w342/{{$images['profiles'][$i]['file_path']}}" alt="{{$info['name']}}">
 													    </div>
 													@endif
 												@endfor
@@ -78,7 +78,11 @@
 									    <span class="sr-only">Next</span>
 									  </a>
 									</div>
-
+								@else
+									<div >
+										<img src="https://assets.tmdb.org/assets/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png" alt="{{$info['name']}}">
+									</div>
+								@endif
 
 
 				            </div>
@@ -110,7 +114,7 @@
 								    </tbody>
 								</table>
 								  @if (!empty($info['imdb_id']))
-								  	<a class="btn btn-primary btn-lg" target="_blank" href="http://www.imdb.com/name/{{$info['imdb_id']}}">IMDB Profile page</a>
+								  	<p style="text-align:center;"><a class="btn btn-primary btn-lg" target="_blank" href="http://www.imdb.com/name/{{$info['imdb_id']}}">IMDB Profile page</a></p>
 								  @endif
 				            </div>
 				            
@@ -135,9 +139,16 @@
 					<div class="row">
 							@for($i=0;$i<$castPreviewCount;$i++)
 								<div class="col-md-2">		
-								    <p style="text-align:center"><a href="{{ url("movie/".$credits['cast'][$i]['id'])}}"><img src="https://image.tmdb.org/t/p/w92{{$credits['cast'][$i]['poster_path']}}" alt="{{$credits['cast'][$i]['title']}}"  width="92"></a></p>
-								    <p style="text-align:center"><a href="{{ url("movie/".$credits['cast'][$i]['id'])}}">{{$credits['cast'][$i]['title']}}</a></p>
-								    <p style="text-align:center;font-size:10px;">(as {{$credits['cast'][$i]['character']}})</p>
+								    @if ($credits['cast'][$i]['media_type']=='movie')
+										<p style="text-align:center"><a href="{{ url("movie/".$credits['cast'][$i]['id'])}}"><img @if (!empty($credits['cast'][$i]['poster_path'])) src="https://image.tmdb.org/t/p/w92{{$credits['cast'][$i]['poster_path']}}" @else src="https://assets.tmdb.org/assets/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png" @endif alt="{{$credits['cast'][$i]['title']}}"  width="92"></a></p>
+									    <p style="text-align:center"><a  href="{{ url("movie/".$credits['cast'][$i]['id'])}}">{{$credits['cast'][$i]['title']}}</a></p>
+									    <p style="text-align:center;font-size:10px;">(as {{$credits['cast'][$i]['character']}})</p>
+									@else
+										<p style="text-align:center"><a href="{{ url("tv/".$credits['cast'][$i]['id'])}}"><img @if (!empty($credits['cast'][$i]['poster_path'])) src="https://image.tmdb.org/t/p/w92{{$credits['cast'][$i]['poster_path']}}" @else src="https://assets.tmdb.org/assets/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png" @endif alt="{{$credits['cast'][$i]['name']}}"  width="92"></a></p>
+									    <p style="text-align:center"><a  href="{{ url("tv/".$credits['cast'][$i]['id'])}}">{{$credits['cast'][$i]['name']}}</a></p>
+									    <p style="text-align:center;font-size:10px;">(as {{$credits['cast'][$i]['character']}})</p>
+									@endif
+
 								    <p>&nbsp;</p>
 								</div>
 						    @endfor
@@ -202,10 +213,16 @@
 				<div class="panel-body">
 					<div class="row">
 							@for($i=0;$i<$crewPreviewCount;$i++)
-								<div class="col-md-2">		
-								    <p style="text-align:center"><a href="{{ url("tv/".$credits['crew'][$i]['id'])}}"><img src="https://image.tmdb.org/t/p/w92{{$credits['crew'][$i]['poster_path']}}" alt="{{$credits['crew'][$i]['title']}}"  width="92"></a></p>
-								    <p style="text-align:center"><a href="{{ url("tv/".$credits['crew'][$i]['id'])}}">{{$credits['crew'][$i]['title']}}</a></p>
-								    <p style="text-align:center;font-size:10px;">({{$credits['crew'][$i]['job']}})</p>
+								<div class="col-md-2">
+									@if ($credits['crew'][$i]['media_type']=='movie')
+										<p style="text-align:center"><a href="{{ url("movie/".$credits['crew'][$i]['id'])}}"><img @if (!empty($credits['crew'][$i]['poster_path'])) src="https://image.tmdb.org/t/p/w92{{$credits['crew'][$i]['poster_path']}}" @else src="https://assets.tmdb.org/assets/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png" @endif alt="{{$credits['crew'][$i]['title']}}"  width="92"></a></p>
+									    <p style="text-align:center"><a  href="{{ url("movie/".$credits['crew'][$i]['id'])}}">{{$credits['crew'][$i]['title']}}</a></p>
+									    <p style="text-align:center;font-size:10px;">({{$credits['crew'][$i]['job']}})</p>
+									@else
+										<p style="text-align:center"><a href="{{ url("tv/".$credits['crew'][$i]['id'])}}"><img @if (!empty($credits['crew'][$i]['poster_path'])) src="https://image.tmdb.org/t/p/w92{{$credits['crew'][$i]['poster_path']}}" @else src="https://assets.tmdb.org/assets/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png" @endif alt="{{$credits['crew'][$i]['name']}}"  width="92"></a></p>
+									    <p style="text-align:center"><a  href="{{ url("tv/".$credits['crew'][$i]['id'])}}">{{$credits['crew'][$i]['name']}}</a></p>
+									    <p style="text-align:center;font-size:10px;">({{$credits['crew'][$i]['job']}})</p>
+									@endif
 								    <p>&nbsp;</p>
 								</div>
 						    @endfor

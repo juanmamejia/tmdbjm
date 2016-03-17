@@ -14,7 +14,7 @@ class Movie extends Model {
     
 	public function getInfo($id)
     {
-    	$urlQuery=$this->url.$id.'&api_key='.$this->apiKey;
+    	$urlQuery=$this->url.$id.'?api_key='.$this->apiKey;
         $string = $this->curl_get_contents($urlQuery);
 		$result = json_decode($string, true);
 
