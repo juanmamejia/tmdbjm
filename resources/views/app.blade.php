@@ -55,7 +55,11 @@
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-default">
-					<div class="panel-heading" style="text-align:center;"><input id="queryBox" name="queryBox" placeholder="Find Movies, TV Shows or Actor's Name" type="text" style="width:60%;" ></div>
+					<div class="panel-heading" style="text-align:center;">
+						<form id="queryForm" name="queryForm" action="{{url("search/")}}" method="get" >
+							<input id="queryBox" name="term" placeholder="Find Movies, TV Shows or Actor's Name" type="text" style="width:60%;" >
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -95,6 +99,14 @@
 		  
 
 		})(jQuery);
+
+		$('#queryForm').submit(function(e) {
+				//
+                if( $('#queryBox').val().length === 0 ) 
+                {
+        			e.preventDefault();
+    			}
+            });
 	</script>
 </body>
 </html>

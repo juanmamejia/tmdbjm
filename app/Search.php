@@ -22,6 +22,22 @@ class Search extends Model {
     }
 
     /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+
+    
+	public function getResultsWithPagination($queryStr, $page)
+    {
+    	$urlQuery=$this->url.'multi?query='.urlencode($queryStr).'&page='.$page.'&api_key='.$this->apiKey;
+        $string = $this->curl_get_contents($urlQuery);
+		$result = json_decode($string, true);
+
+		return $result;
+    }
+
+    /**
 	 * Get TMDN JSON via curl
 	 *
 	 * @param string $url			TMDN API URL

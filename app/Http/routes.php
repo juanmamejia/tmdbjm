@@ -21,7 +21,10 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-Route::get('testingSearch', 'SearchController@showResults');
+//Route::get('search/{term}', 'SearchController@showResults');
+Route::get('search', ['as' => 'search', 'uses' => 'SearchController@showResults']);
+Route::get('search/{term}/{page}', 'SearchController@showResults');
+Route::get('search-ajax/{term}/{page}', 'SearchController@showAjaxPageResults');
 
 Route::get('getdata', 'SearchController@showAutocomplete');
 

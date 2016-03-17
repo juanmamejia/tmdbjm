@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Search;
 use Input;
+use View;
 use Response;
 
 
@@ -13,16 +14,43 @@ class SearchController extends Controller
 
 	public function showResults()
 	{
+		if (Input::get('page'))
+		{
+			$page = Input::get('page');
+		}
 
-		//$theResults = Search::getResults('Brad Pitt');
-		$foo = new Search();
-		$theResults = $foo->getResults('Brad');
+		
+        $term = Input::get('term');
 
-		echo "<pre>"; print_r($theResults); echo "</pre>";
+		$searchObj = new Search();
 
-		//return View::make('payments/paypalView')->with('token', $clientToken);
+		if (isset($page))
+		{
+			$theResults = $searchObj->getResultsWithPagination($term, $page);
+		}
+		else
+		{
+			$theResults = $searchObj->getResults($term);
+		}
+
+		//echo "<pre>"; print_r($theResults); echo "</pre>";
+
+		return View::make('search/resultsView')->with('search', $theResults)->with('term', $term);
 
 	}
+
+	public function showAjaxPageResults($term,$page)
+	{
+		$searchObj = new Search();
+		$theResults = $searchObj->getResultsWithPagination($term, $page);
+
+
+		//echo "<pre>"; print_r($theResults); echo "</pre>";
+
+		return View::make('search/resultsAjaxView')->with('search', $theResults)->with('term', $term);
+
+	}
+
 
 	public function showAutocomplete()
 	{
