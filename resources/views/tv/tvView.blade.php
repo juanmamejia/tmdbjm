@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
-				<div class="panel-heading" style="text-align:center;">Movie Overview</div>
+				<div class="panel-heading" style="text-align:center;">TV Show Overview</div>
 
 				<div class="panel-body">
 
@@ -45,11 +45,11 @@
 											  	@for ($i=0;$i<10;$i++)
 											  		@if ($i==0)
 													    <div class="item active">
-													      <img src="https://image.tmdb.org/t/p/w342/{{$images['posters'][$i]['file_path']}}" alt="{{$info['title']}}">
+													      <img src="https://image.tmdb.org/t/p/w342/{{$images['posters'][$i]['file_path']}}" alt="{{$info['name']}}">
 													    </div>
 													@else
 													    <div class="item">
-													      <img src="https://image.tmdb.org/t/p/w342/{{$images['posters'][$i]['file_path']}}" alt="{{$info['title']}}">
+													      <img src="https://image.tmdb.org/t/p/w342/{{$images['posters'][$i]['file_path']}}" alt="{{$info['name']}}">
 													    </div>
 													@endif
 												@endfor
@@ -57,11 +57,11 @@
 												@for ($i=0;$i<count($images['posters']);$i++)
 											  		@if ($i==0)
 													    <div class="item active">
-													      <img src="https://image.tmdb.org/t/p/w342/{{$images['posters'][$i]['file_path']}}" alt="{{$info['title']}}">
+													      <img src="https://image.tmdb.org/t/p/w342/{{$images['posters'][$i]['file_path']}}" alt="{{$info['name']}}">
 													    </div>
 													@else
 													    <div class="item">
-													      <img src="https://image.tmdb.org/t/p/w342/{{$images['posters'][$i]['file_path']}}" alt="{{$info['title']}}">
+													      <img src="https://image.tmdb.org/t/p/w342/{{$images['posters'][$i]['file_path']}}" alt="{{$info['name']}}">
 													    </div>
 													@endif
 												@endfor
@@ -80,7 +80,7 @@
 									</div>
 								@else
 									<div >
-										<img src="https://assets.tmdb.org/assets/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png" alt="{{$info['title']}}">
+										<img src="https://assets.tmdb.org/assets/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png" alt="{{$info['name']}}">
 									</div>
 								@endif
 
@@ -88,15 +88,14 @@
 				            </div>
 				           
 				            <div class="col-md-7">
-				                <h1 style="margin-bottom:0px;">{{$info['title']}} <span style="font-size:16px;padding-bottom:4px;">({{ substr($info['release_date'],0,4) }})</span></h1>
-				                <span style="font-size:12px;"><i>{{$info['tagline']}}</i></span>
+				                <h1 style="margin-bottom:0px;">{{$info['name']}} <span style="font-size:16px;padding-bottom:4px;">({{ substr($info['first_air_date'],0,4) }} - {{ substr($info['last_air_date'],0,4) }})</span></h1>
 				                <p style="text-align:justify;margin-top:5px;">{{$info['overview']}}</p>
 				                <table class="table table-condensed">
 								    
 								    <tbody>
 								    	@if (!empty($info['vote_average']))
 									      <tr>
-									        <td style="width:20%;">Raiting</td>
+									        <td style="width:30%;">Raiting</td>
 									        <td>{{$info['vote_average']}}/10</td>
 									      </tr>
 									    @endif
@@ -106,10 +105,16 @@
 									        <td>{{$info['vote_count']}}</td>
 									      </tr>
 									    @endif
-									    @if (!empty($info['runtime']))
+									    @if (!empty($info['number_of_seasons']))
 									      <tr>
-									        <td>Runtime</td>
-									        <td>{{$info['runtime']}} M.</td>
+									        <td>Number of seasons</td>
+									        <td>{{$info['number_of_seasons']}}</td>
+									      </tr>
+									    @endif
+									    @if (!empty($info['number_of_episodes']))
+									      <tr>
+									        <td>Number of episodes</td>
+									        <td>{{$info['number_of_episodes']}}</td>
 									      </tr>
 									    @endif
 									    @if (count($info['genres'])>0)
@@ -125,13 +130,13 @@
 									        </td>
 									      </tr>
 									    @endif
-									    @if (count($info['production_companies'])>0)
+									    @if (count($info['networks'])>0)
 									      <tr>
-									        <td>Production</td>
+									        <td>Networks</td>
 									        <td>
-									        	@for ($i=0;$i<count($info['production_companies']);$i++)
-									        		{{$info['production_companies'][$i]['name']}}
-									        		@if($i<(count($info['production_companies'])-1))
+									        	@for ($i=0;$i<count($info['networks']);$i++)
+									        		{{$info['networks'][$i]['name']}}
+									        		@if($i<(count($info['networks'])-1))
 									        			,&nbsp;
 									        		@endif
 									        	@endfor
@@ -140,8 +145,8 @@
 									    @endif
 								    </tbody>
 								</table>
-								  @if (!empty($info['imdb_id']))
-								  	<p style="text-align:center;"><a class="btn btn-primary btn-lg" target="_blank" href="http://www.imdb.com/title/{{$info['imdb_id']}}">IMDB Profile page</a></p>
+								  @if (!empty($info['homepage']))
+								  	<p style="text-align:center;"><a class="btn btn-primary btn-lg" target="_blank" href="{{$info['homepage']}}">Home page</a></p>
 								  @endif
 				            </div>
 				            

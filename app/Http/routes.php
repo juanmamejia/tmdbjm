@@ -14,6 +14,7 @@
 Route::get('/', 'HomeController@index');
 Route::get('person/{id}', 'PersonController@showPerson');
 Route::get('movie/{id}', 'MovieController@showMovie');
+Route::get('tv/{id}', 'TvController@showTv');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
