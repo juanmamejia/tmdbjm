@@ -80,28 +80,28 @@
 		  
 		  $queryBox.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
 		    
-		    var $li = $('<li style="height:70px;border-top:0px;">');
+		    var $li = $('<li style="height:70px;border-top:0px;padding:0px;">');
 
-		    //$li.parent().css( "margin-top", "0px" );
+		    var $myul = ul;
+
+		    $myul.css({"margin":"0px", "border":"0px", "padding":"0px"});
 
 		    $li.attr('data-value', item.label);
-		    $li.append('<a href="'+item.link+'">');
+		    $li.append('<a href="'+item.link+'" style="border:0px;margin:0px;padding:0px;">');
 
 
-		    var $theHTML = '<div style="display:table;"><span style="vertical-align:middle;display:table-cell;"><img style="vertical-align:middle;display:table-cell;" width="45" height="64" src="'+item.icon+'" alt="'+item.label+'" /></span><span style="vertical-align:middle;display:table-cell;font-size:12px;">&nbsp;<b>'+item.label+'</b><br>&nbsp;'+item.type+'<br>&nbsp;'+item.extra+'</span></div>'; 
+		    var $theHTML = '<div style="display:table;border:0px;margin:0px;padding:0px;"><span style="vertical-align:middle;display:table-cell;"><img style="vertical-align:middle;display:table-cell;" width="45" height="64" src="'+item.icon+'" alt="'+item.label+'" /></span><span style="vertical-align:middle;display:table-cell;font-size:12px;">&nbsp;<b>'+item.label+'</b><br>&nbsp;'+item.type+'<br>&nbsp;'+item.extra+'</span></div>'; 
 
 		    $li.find('a').append($theHTML); 
 
-		    //ul.css({"border-top":"0px", "margin-top":"0px"});
 
-		    return $li.appendTo(ul);
+		    return $li.appendTo($myul);
 		  };
 		  
 
 		})(jQuery);
 
 		$('#queryForm').submit(function(e) {
-				//
                 if( $('#queryBox').val().length === 0 ) 
                 {
         			e.preventDefault();

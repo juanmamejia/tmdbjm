@@ -1,6 +1,9 @@
 @extends('app')
 
 @section('content')
+<script src="{{ URL::asset('js/jquery.modal.js') }}"></script>
+{!! HTML::style ('css/jquery.modal.css') !!}
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
@@ -167,7 +170,7 @@
 			            @if ($countBackdrops>8)
                             @for ($i=0;$i<8;$i++)
                                 <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-						            <a href="#" class="thumbnail" >
+						            <a href="{{ url("movie/imageajax".$images['backdrops'][$i]['file_path'])}}" class="thumbnail" rel="modal:open">
 						                <img id="imageresource" alt="" src="https://image.tmdb.org/t/p/w500/{{$images['backdrops'][$i]['file_path']}}" class="img-responsive">
 						            </a>
 						        </div>
@@ -175,7 +178,7 @@
                         @else
                             @for ($i=0;$i<count($images['backdrops']);$i++)
                                 <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-						            <a href="#" class="thumbnail" id="pop" >
+						            <a href="{{ url("movie/imageajax".$images['backdrops'][$i]['file_path'])}}" class="thumbnail" id="pop" rel="modal:open">
 						                <img id="imageresource" alt="" src="https://image.tmdb.org/t/p/w500/{{$images['backdrops'][$i]['file_path']}}" class="img-responsive">
 						            </a>
 						        </div>

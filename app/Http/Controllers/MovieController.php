@@ -53,7 +53,10 @@ class MovieController extends Controller
 
 	}
 
-	
+	public function showAjaxImage($imagePath)
+	{
+		return '<img src="https://image.tmdb.org/t/p/w500/'.$imagePath.'"" >';
+	}
 
 	
 }
