@@ -1,4 +1,4 @@
-@extends('app')
+@extends('app', ['title' => 'TMDB Web Application by Juan Manuel Mejía'])
 
 @section('content')
 

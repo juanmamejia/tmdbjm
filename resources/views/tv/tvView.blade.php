@@ -1,4 +1,4 @@
-@extends('app')
+@extends('app', ['title' => 'TMDB - '.$info['name']])
 
 @section('content')
 <div class="container">

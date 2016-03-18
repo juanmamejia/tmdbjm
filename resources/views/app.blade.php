@@ -4,7 +4,12 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Laravel</title>
+	@if (isset($title))
+		<title>{{$title}}</title>
+	@else
+		<title>TMDB Web Application by Juan Manuel Mejía</title>
+	@endif
+	
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 

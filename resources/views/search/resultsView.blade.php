@@ -1,4 +1,4 @@
-@extends('app', ['searchedString' => $term])
+@extends('app', ['searchedString' => $term], ['title' => 'TMDB - Search results for "'.$term.'"'])
 
 @section('content')
 

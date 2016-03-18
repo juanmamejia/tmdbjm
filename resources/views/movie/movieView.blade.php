@@ -1,4 +1,4 @@
-@extends('app')
+@extends('app', ['title' => 'TMDB - '.$info['title']])
 
 @section('content')
 <script src="{{ URL::asset('js/jquery.modal.js') }}"></script>
