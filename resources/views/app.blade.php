@@ -57,7 +57,11 @@
 				<div class="panel panel-default">
 					<div class="panel-heading" style="text-align:center;">
 						<form id="queryForm" name="queryForm" action="{{url("search/")}}" method="get" >
-							<input id="queryBox" name="term" placeholder="Find Movies, TV Shows or Actor's Name" type="text" style="width:60%;" >
+							@if (isset($searchedString))
+								<input id="queryBox" name="term" maxlength="512" placeholder="Find Movies, TV Shows or Actor's Name" type="text" style="width:60%;" value="{{$searchedString}}" >
+							@else
+								<input id="queryBox" name="term" maxlength="512" placeholder="Find Movies, TV Shows or Actor's Name" type="text" style="width:60%;" >
+							@endif
 						</form>
 					</div>
 				</div>
@@ -87,7 +91,7 @@
 		    $myul.css({"margin":"0px", "border":"0px", "padding":"0px"});
 
 		    $li.attr('data-value', item.label);
-		    $li.append('<a href="'+item.link+'" style="border:0px;margin:0px;padding:0px;">');
+		    $li.append('<a href="'+item.link+'">');
 
 
 		    var $theHTML = '<div style="display:table;border:0px;margin:0px;padding:0px;"><span style="vertical-align:middle;display:table-cell;"><img style="vertical-align:middle;display:table-cell;" width="45" height="64" src="'+item.icon+'" alt="'+item.label+'" /></span><span style="vertical-align:middle;display:table-cell;font-size:12px;">&nbsp;<b>'+item.label+'</b><br>&nbsp;'+item.type+'<br>&nbsp;'+item.extra+'</span></div>'; 

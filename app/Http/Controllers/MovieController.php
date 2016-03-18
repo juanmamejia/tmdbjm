@@ -44,11 +44,6 @@ class MovieController extends Controller
 			$crewPreviewCount = $movieCrewCount;
 		}
 
-		//echo "<pre>"; print_r($movieInfo); echo "</pre>";
-		//echo "-------------------------------------------------------";
-		//echo "<pre>"; print_r($movieCredits); echo "</pre>";
-		//echo "-------------------------------------------------------";
-		//echo "<pre>"; print_r($movieImages); echo "</pre>";
 		return View::make('movie/movieView')->with('info', $movieInfo)->with('credits', $movieCredits)->with('images', $movieImages)->with('countPosters', $moviePostersCount)->with('countBackdrops', $movieBackdropsCount)->with('castPreviewCount', $castPreviewCount)->with('crewPreviewCount', $crewPreviewCount);;
 
 	}
