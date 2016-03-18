@@ -7,18 +7,14 @@ use App\Person;
 use Input;
 use Response;
 
+/**
+   * Home
+   * 
+   * 
+   * @package    Controller
+   * @author     Juan Manuel Mejía <juancho428@gmail.com>
+*/
 class HomeController extends Controller {
-
-	/*
-	|--------------------------------------------------------------------------
-	| Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller renders your application's "dashboard" for users that
-	| are authenticated. Of course, you are free to change or remove the
-	| controller as you wish. It is just here to get your app started!
-	|
-	*/
 
 	/**
 	 * Create a new controller instance.
@@ -31,9 +27,9 @@ class HomeController extends Controller {
 	}
 
 	/**
-	 * Show the application dashboard to the user.
+	 * Show the application home to the user.
 	 *
-	 * @return Response
+	 * @return Home View with Most popular movies, tv shows and persons.
 	 */
 	public function index()
 	{
@@ -43,8 +39,6 @@ class HomeController extends Controller {
 
 		$personObj = new Person();
 		$popularPersonsArray = $personObj->getPopular();
-
-		//echo "<pre>"; print_r($popularPersonsArray); echo "</pre>";
 
 		return view('home')->with('popularMovies', $popularMoviesArray['results'])->with('popularTvShows', $popularTvShowsArray['results'])->with('popularPersons', $popularPersonsArray['results']);
 	}

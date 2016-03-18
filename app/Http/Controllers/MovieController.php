@@ -8,10 +8,22 @@ use Input;
 use View;
 use Response;
 
-
+/**
+   * Movie
+   * 
+   * 
+   * @package    Controller
+   * @author     Juan Manuel Mejía <juancho428@gmail.com>
+*/
 class MovieController extends Controller 
 {
 
+	/**
+	 * Show Movie info page.
+	 *
+	 * @param string $movieId  TMDB Movie id
+	 * @return View with all info about the movie.
+	 */
 	public function showMovie($movieId)
 	{
 		$movieObj = new Movie();
@@ -48,6 +60,12 @@ class MovieController extends Controller
 
 	}
 
+	/**
+	 * Return HTML for modal image via ajax.
+	 *
+	 * @param string $imagePath  Movie Image Path
+	 * @return String.
+	 */
 	public function showAjaxImage($imagePath)
 	{
 		return '<img src="https://image.tmdb.org/t/p/w500/'.$imagePath.'"" >';

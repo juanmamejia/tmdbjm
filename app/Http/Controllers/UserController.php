@@ -6,10 +6,21 @@ use Input;
 use View;
 use Response;
 
-
+/**
+   * User
+   * 
+   * 
+   * @package    Controller
+   * @author     Juan Manuel Mejía <juancho428@gmail.com>
+*/
 class UserController extends Controller 
 {
 
+	/**
+	 * Manage adult option on queries via ajax..
+	 *
+	 * @return String.
+	 */
 	public function adultSetting()
 	{
 		if (Input::get('option'))
@@ -29,6 +40,12 @@ class UserController extends Controller
 		}
 	}
 
+	/**
+	 * Set Cookie for including adult tiles on search
+	 *
+	 * @param string set True or False by user choice
+	 * @return Void.
+	 */
 	private function setCookie($value)
 	{
 		$cookie_name = "adult";

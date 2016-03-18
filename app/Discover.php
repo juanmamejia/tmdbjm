@@ -3,15 +3,33 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+   * Discover
+   * 
+   * 
+   * @package    Model
+   * @author     Juan Manuel Mejía <juancho428@gmail.com>
+*/
 class Discover extends Model {
     /**
-     * The database table used by the model.
+     * URL used to connect with API.
      *
      * @var string
      */
     protected $url = "https://api.themoviedb.org/3/discover/";
+
+    /**
+     * Valid API Key.
+     *
+     * @var string
+     */
     protected $apiKey = "1259bee0c1240e639a71a2139f4d7eb1";
     
+    /**
+     * Popular Movies API request.
+     *
+     * @return Array with Popular Movies.
+     */
 	public function getPopularMovies()
     {
     	$urlQuery=$this->url.'movie?sort_by=popularity.desc&api_key='.$this->apiKey;
@@ -21,6 +39,11 @@ class Discover extends Model {
 		return $result;
     }
 
+    /**
+     * Popular TV Shows API request.
+     *
+     * @return Array with Popular TV Shows.
+     */
     public function getPopularTvShows()
     {
     	$urlQuery=$this->url.'tv?sort_by=popularity.desc&api_key='.$this->apiKey;
@@ -33,7 +56,7 @@ class Discover extends Model {
     /**
 	 * Get TMDN JSON via curl
 	 *
-	 * @param string $url			TMDN API URL
+	 * @param string $url  TMDN API URL
 	 * @return TMDb JSON Content
 	 */
 	 private function curl_get_contents($url)

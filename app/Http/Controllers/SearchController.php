@@ -9,10 +9,21 @@ use View;
 use Response;
 use Redirect;
 
-
+/**
+   * Search
+   * 
+   * 
+   * @package    Controller
+   * @author     Juan Manuel Mejía <juancho428@gmail.com>
+*/
 class SearchController extends Controller 
 {
 
+	/**
+	 * Show Results page.
+	 *
+	 * @return View with all results.
+	 */
 	public function showResults()
 	{
 		if (Input::get('page'))
@@ -57,8 +68,6 @@ class SearchController extends Controller
 				$theResults = $searchObj->getResults(strtolower($term), $adult);
 			}
 
-			//echo "<pre>"; print_r($theResults); echo "</pre>";
-
 			return View::make('search/resultsView')->with('search', $theResults)->with('term', $term);
 		}
 		else
@@ -67,6 +76,13 @@ class SearchController extends Controller
 		}
 	}
 
+	/**
+	 * Show Pagination results in infinite scroller via ajax.
+	 *
+	 * @param string $term  Term type by user.
+	 * @param string $page  Results page.
+	 * @return View with results with pagination.
+	 */
 	public function showAjaxPageResults($term,$page)
 	{
 		if (isset($page))
@@ -112,7 +128,11 @@ class SearchController extends Controller
 
 	}
 
-
+	/**
+	 * Show Suggest results for input text box.
+	 *
+	 * @return json response.
+	 */
 	public function showAutocomplete()
 	{
 		if (Input::get('term'))

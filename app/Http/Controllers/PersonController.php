@@ -8,10 +8,22 @@ use Input;
 use View;
 use Response;
 
-
+/**
+   * Person
+   * 
+   * 
+   * @package    Controller
+   * @author     Juan Manuel Mejía <juancho428@gmail.com>
+*/
 class PersonController extends Controller 
 {
 
+	/**
+	 * Show Person info page.
+	 *
+	 * @param string $personId  TMDB Person id
+	 * @return View with all info about the person.
+	 */
 	public function showPerson($personId)
 	{
 		$personObj = new Person();
@@ -82,12 +94,17 @@ class PersonController extends Controller
 		usort($creditsDateCrewTempArray, array($this,'sortDate'));
 
 
-
-		//echo "<pre>"; print_r($creditsDateCastTempArray); echo "</pre>";
 		return View::make('person/personView')->with('info', $personInfo)->with('credits', $personCredits)->with('images', $personImages)->with('countImages', $personImagesCount)->with('sortCast', $creditsDateCastTempArray)->with('sortCrew', $creditsDateCrewTempArray)->with('castPreviewCount', $castPreviewCount)->with('crewPreviewCount', $crewPreviewCount);
 
 	}
 
+	/**
+	 * Sort array by date.
+	 *
+	 * @param array $a
+	 * @param array $b
+	 * @return Array sorted by date.
+	 */
 	private function sortDate($a, $b)
 	{
 	    if ($a['date'] == $b['date']) {

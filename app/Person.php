@@ -3,15 +3,34 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+   * Person
+   * 
+   * 
+   * @package    Model
+   * @author     Juan Manuel Mejía <juancho428@gmail.com>
+*/
 class Person extends Model {
     /**
-     * The database table used by the model.
+     * URL used to connect with API.
      *
      * @var string
      */
     protected $url = "https://api.themoviedb.org/3/person/";
+
+    /**
+     * Valid API Key.
+     *
+     * @var string
+     */
     protected $apiKey = "1259bee0c1240e639a71a2139f4d7eb1";
     
+    /**
+     * Person Info API request.
+     *
+     * @param string $id  TMDB Person id
+     * @return Array with Person info.
+     */
 	public function getInfo($id)
     {
     	$urlQuery=$this->url.$id.'?api_key='.$this->apiKey;
@@ -21,6 +40,12 @@ class Person extends Model {
 		return $result;
     }
 
+    /**
+     * Person Credits API request.
+     *
+     * @param string $id  TMDB Person id
+     * @return Array with Person credits.
+     */
     public function getCredits($id)
     {
     	$urlQuery=$this->url.$id.'/combined_credits?api_key='.$this->apiKey;
@@ -30,6 +55,12 @@ class Person extends Model {
 		return $result;
     }
 
+    /**
+     * Person Images API request.
+     *
+     * @param string $id  TMDB Person id
+     * @return Array with Person images.
+     */
     public function getImages($id)
     {
     	$urlQuery=$this->url.$id.'/images?api_key='.$this->apiKey;
@@ -39,6 +70,11 @@ class Person extends Model {
 		return $result;
     }
 
+    /**
+     * Popular Persons API request.
+     *
+     * @return Array with Popular Persons.
+     */
     public function getPopular()
     {
     	$urlQuery=$this->url.'popular?api_key='.$this->apiKey;
@@ -51,7 +87,7 @@ class Person extends Model {
     /**
 	 * Get TMDN JSON via curl
 	 *
-	 * @param string $url			TMDN API URL
+	 * @param string $url  TMDN API URL
 	 * @return TMDb JSON Content
 	 */
 	 private function curl_get_contents($url)
