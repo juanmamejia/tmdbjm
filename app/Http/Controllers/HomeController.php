@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Discover;
+use App\Person;
 use Input;
 use Response;
 
@@ -40,9 +41,12 @@ class HomeController extends Controller {
 		$popularMoviesArray = $discoverObj->getPopularMovies();
 		$popularTvShowsArray = $discoverObj->getPopularTvShows();
 
-		//echo "<pre>"; print_r($theResults); echo "</pre>";
+		$personObj = new Person();
+		$popularPersonsArray = $personObj->getPopular();
 
-		return view('home')->with('popularMovies', $popularMoviesArray['results'])->with('popularTvShows', $popularTvShowsArray['results']);
+		//echo "<pre>"; print_r($popularPersonsArray); echo "</pre>";
+
+		return view('home')->with('popularMovies', $popularMoviesArray['results'])->with('popularTvShows', $popularTvShowsArray['results'])->with('popularPersons', $popularPersonsArray['results']);
 	}
 
 }

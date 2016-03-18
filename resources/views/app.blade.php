@@ -43,9 +43,22 @@
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-						<li><a href="{{ url('/auth/login') }}">Movies</a></li>
-						<li><a href="{{ url('/auth/register') }}">TV Shows</a></li>
-						<li><a href="{{ url('/auth/register') }}">Persons</a></li>
+						<li>
+							 
+							  <a href="#"  data-toggle="dropdown">Settings</a>
+							  <ul class="dropdown-menu" style="width:250px;padding:5px;">
+							    <li>
+							    	@if(!isset($_COOKIE['adult']))
+										<input id="adultSetting" type="checkbox" name="adultSetting" > Include adult titles on my results
+									@else
+										<input id="adultSetting" type="checkbox" name="adultSetting" @if($_COOKIE['adult']=='true') checked @endif > Include adult titles on my results
+									@endif
+							    	
+							    </li>
+							  </ul>
+							
+						</li>
+
 				</ul>
 			</div>
 		</div>
@@ -111,6 +124,20 @@
         			e.preventDefault();
     			}
             });
+
+		$('#adultSetting').click(function() {
+
+			var adult='false';
+
+			if($('#adultSetting').prop('checked')) 
+			{
+			    adult='true';
+			} 
+
+			$.get('{{ url("user/setAdultOption")}}',{option:adult}, function(data){
+				//success data		            
+			});
+		});
 	</script>
 </body>
 </html>

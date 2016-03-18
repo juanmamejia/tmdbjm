@@ -39,6 +39,15 @@ class Person extends Model {
 		return $result;
     }
 
+    public function getPopular()
+    {
+    	$urlQuery=$this->url.'popular?api_key='.$this->apiKey;
+        $string = $this->curl_get_contents($urlQuery);
+		$result = json_decode($string, true);
+
+		return $result;
+    }
+
     /**
 	 * Get TMDN JSON via curl
 	 *

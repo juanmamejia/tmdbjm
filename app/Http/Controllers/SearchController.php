@@ -35,17 +35,29 @@ class SearchController extends Controller
 			}
 
 			$term = htmlentities (trim($term) , ENT_NOQUOTES);
+			$term = str_replace("&amp;", "&", $term);
+
+			if(!isset($_COOKIE['adult']))
+			{
+				$adult = 'false';
+			}
+			else
+			{
+				$adult = $_COOKIE['adult'];
+			}
 				
 			$searchObj = new Search();
 
 			if (isset($page))
 			{
-				$theResults = $searchObj->getResultsWithPagination(strtolower($term), $page);
+				$theResults = $searchObj->getResultsWithPagination(strtolower($term), $page, $adult);
 			}
 			else
 			{
-				$theResults = $searchObj->getResults(strtolower($term));
+				$theResults = $searchObj->getResults(strtolower($term), $adult);
 			}
+
+			//echo "<pre>"; print_r($theResults); echo "</pre>";
 
 			return View::make('search/resultsView')->with('search', $theResults)->with('term', $term);
 		}
@@ -77,9 +89,19 @@ class SearchController extends Controller
 			}
 
 			$term = htmlentities (trim($term) , ENT_NOQUOTES);
+			$term = str_replace("&amp;", "&", $term);
+
+			if(!isset($_COOKIE['adult']))
+			{
+				$adult = 'false';
+			}
+			else
+			{
+				$adult = $_COOKIE['adult'];
+			}
 
 			$searchObj = new Search();
-			$theResults = $searchObj->getResultsWithPagination(strtolower($term), $page);
+			$theResults = $searchObj->getResultsWithPagination(strtolower($term), $page, $adult);
 
 			return View::make('search/resultsAjaxView')->with('search', $theResults)->with('term', $term);
 		}
@@ -103,6 +125,7 @@ class SearchController extends Controller
 			}
 
 			$term = htmlentities (trim($term) , ENT_NOQUOTES);
+			$term = str_replace("&amp;", "&", $term);
 
 			$searchObj = new Search();
 			$theResults = $searchObj->getResults(strtolower($term));
