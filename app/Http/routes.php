@@ -15,6 +15,7 @@ Route::get('/', 'HomeController@index');
 Route::get('person/{id}', 'PersonController@showPerson');
 Route::get('movie/{id}', 'MovieController@showMovie');
 Route::get('movie/imageajax/{imagePath}', 'MovieController@showAjaxImage');
+Route::get('tv/imageajax/{imagePath}', 'TvController@showAjaxImage');
 Route::get('tv/{id}', 'TvController@showTv');
 
 Route::get('search', ['as' => 'search', 'uses' => 'SearchController@showResults']);
