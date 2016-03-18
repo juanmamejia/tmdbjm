@@ -1,23 +1,25 @@
-## Laravel PHP Framework
+## TMDB Web Application by Juan Manuel Mejía
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+Web application built in Laravel PHP Framework.
+Powered by <a ref="https://www.themoviedb.org/">themoviedb.org</a> API, you can search by movie, tv show title and actor's name. 
+Including photos, bios, complete cast list, crew list and some features like the option of includes adult titles on your results.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+You can see it online here: <a href="http://blaucastmedia.com/tmdbjm/public/">TMDB Web Application</a>
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+## Installation
 
-## Official Documentation
+This application has a few system requirements:
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+    <ul><li>PHP >= 5.5.9</li>
+    <li>OpenSSL PHP Extension</li>
+    <li>PDO PHP Extension</li>
+    <li>Mbstring PHP Extension</li>
+    <li>Tokenizer PHP Extension</li></ul>
 
-## Contributing
+Just copy the files in your public_html and run the site accessing to the public folder.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Enjoy!
 
 ### License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+This web application is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
