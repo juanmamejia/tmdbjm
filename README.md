@@ -1,7 +1,7 @@
 ## TMDB Web Application by Juan Manuel Mejía
 
 Web application built in Laravel PHP Framework.
-Powered by <a ref="https://www.themoviedb.org/">themoviedb.org</a> API, you can search by movie, tv show title and actor's name. 
+Powered by <a href="https://www.themoviedb.org/" target="_blank">themoviedb.org</a> API, you can search by movie, tv show title and actor's name. 
 Including photos, bios, complete cast list, crew list and some features like the option of includes adult titles on your results and link to the IMDB profile info.
 
 You can see it online here: <a href="http://blaucastmedia.com/tmdbjm/public/" target="_blank">TMDB Web Application</a>
